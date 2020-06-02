@@ -98,15 +98,17 @@ func (al *AttackList)Initialize(){
 }
 
 func (al *AttackList)Update()   (int, *PointIso,bool){
+	var dmg int
+	var area *PointIso
+	var hit bool
 	for e := al.attacks.Front(); e != nil; e = e.Next(){
 		s := e.Value.(*AnAttack)
 		for d:= al.bodys.Front(); d!= nil; d = d.Next(){
 			t:= d.Value.(*Body)
 			if s.DidHit(t.Moving){
-				if dmg, hit := t.Char.DealWithStrikeEvent(s.GetStrike(),s.GetCharacter()); hit{
+				if dmg, hit = t.Char.DealWithStrikeEvent(s.GetStrike(),s.GetCharacter()); hit{
 					s.count = 0
-					area := t.Moving.GetCenterIso()
-					return dmg, area, hit
+					area = t.Moving.GetCenterIso()
 				}
 			}
 		}
@@ -114,6 +116,7 @@ func (al *AttackList)Update()   (int, *PointIso,bool){
 		if s.Terminated(){
 			defer al.attacks.Remove(e)
 		}
+		return dmg, area, hit
 	}
 	return 0, &PointIso{-10,-10}, false
 }
