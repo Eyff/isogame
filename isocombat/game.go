@@ -4,7 +4,7 @@ import(
 "log"
 "github.com/hajimehoshi/ebiten"
 "github.com/hajimehoshi/ebiten/ebitenutil"
-"github.com/own/isocombat"
+"github.com/Eyff/isogame"
 "image/color"
 )
 
