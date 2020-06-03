@@ -1,1 +1,1 @@
-NOthing special, trying out to code an isometric game.
+Nothing special, trying to code an isometric game.
